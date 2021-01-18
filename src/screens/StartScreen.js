@@ -30,15 +30,15 @@ const StartScreen = () => {
       <ScrollView>
         <ResultsList
           results={filterResultsByPrice("€")}
-          heading="Cost Effective"
+          heading="Cost Effective !"
         />
         <ResultsList
           results={filterResultsByPrice("€€")}
-          heading="Bit Pricer"
+          heading="Bit Pricer !"
         />
         <ResultsList
           results={filterResultsByPrice("€€€")}
-          heading="Big Splender! "
+          heading="Big Spender!"
         />
       </ScrollView>
     </View>

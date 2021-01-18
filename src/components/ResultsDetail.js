@@ -2,18 +2,25 @@
 
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 
 // function components
 
 const ResultsDetail = ({ result, navigation }) => {
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={{ uri: result.image_url }} />
+      <Image style={styles.Image} source={{ uri: result.image_url }} />
       <Text style={styles.name}> {result.name} </Text>
-      <Text>
-        {" "}
-        {result.rating} Starts , {result.review_count} Review{" "}
-      </Text>
+      <View style={{ flexDirection: "row" }}>
+        <Text> {result.rating} </Text>
+        <FontAwesome
+          name="star"
+          size={16}
+          color="black"
+          style={{ marginRight: 10, marginTop: 3 }}
+        />
+        <Text>{result.review_count} Reviews </Text>
+      </View>
 
       <Text numberOfLines={1}></Text>
     </View>
@@ -36,6 +43,13 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     height: 130,
     marginBottom: 5,
+  },
+
+  Image: {
+    width: 190,
+    height: 175,
+    borderRadius: 4,
+    alignSelf: "center",
   },
 });
 

@@ -8,9 +8,11 @@ import {
   ImagePropTypes,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { Value } from "react-native-reanimated";
+import { MaterialIcons } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native-gesture-handler";
 //Part-2 compoenets
 const SearchBar = (props) => {
+  const x = " ";
   return (
     <View style={style.ViewStyling}>
       <Feather
@@ -26,6 +28,15 @@ const SearchBar = (props) => {
         autoCorrect={false}
         onEndEditing={props.onTermSubmit}
       />
+      {props.term.length >= 1 ? (
+        <TouchableOpacity onPress={() => props.onTermChange(x)}>
+          <MaterialIcons
+            name="clear"
+            color="black"
+            style={{ fontSize: 35, alignSelf: "center", marginHorizontal: 15 }}
+          />
+        </TouchableOpacity>
+      ) : null}
     </View>
   );
 };
