@@ -29,7 +29,8 @@ const ResultsList = ({ heading, results, navigation }) => {
         data={results}
         keyExtractor={(results) => results.id}
         renderItem={(props) => {
-          console.log(props.item.name);
+          // console.log(props.item.name);
+          // console.log("Coordinates are ", props.item.coordinates);
           props.item.image_url === ""
             ? (props.item.image_url =
                 "https://images.unsplash.com/photo-1470114755716-3e1124c6c3bd?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=988&q=80")
@@ -39,7 +40,10 @@ const ResultsList = ({ heading, results, navigation }) => {
             <TouchableOpacity
               onPress={() => {
                 console.log("Touchable Opacity pressed navigate to new Screen");
-                navigation.navigate("ResultsShow", { id: props.item.id });
+                navigation.navigate("ResultsShow", {
+                  id: props.item.id,
+                  latitude: props.item.coordinates,
+                });
               }}
             >
               <ResultsDetail result={props.item} />

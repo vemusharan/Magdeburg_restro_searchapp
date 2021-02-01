@@ -7,6 +7,7 @@ import { FontAwesome } from "@expo/vector-icons";
 // function components
 
 const ResultsDetail = ({ result, navigation }) => {
+  // console.log(result);
   return (
     <View style={styles.container}>
       <Image style={styles.Image} source={{ uri: result.image_url }} />

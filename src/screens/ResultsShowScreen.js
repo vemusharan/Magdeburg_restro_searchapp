@@ -11,12 +11,14 @@ import {
 import yelp from "../api/yelp";
 import { Feather } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
+import MapView, { Polyline, Circle } from "react-native-maps";
 
 const ResultsShowScreen = ({ navigation }) => {
   const id = navigation.getParam("id");
+  const location = navigation.getParam("latitude");
   const [result, setResult] = useState(null);
 
-  console.log(result);
+  //console.log(result);
   const getResult = async (id) => {
     const response = await yelp.get(`/${id}`);
     setResult(response.data);
@@ -29,7 +31,11 @@ const ResultsShowScreen = ({ navigation }) => {
   if (!result) {
     return null;
   }
-  console.log();
+  console.log(location.latitude);
+  console.log(location.longitude);
+  let point = [];
+  point.push({ latitude: 52.169769, longitude: 11.630446 });
+  point.push({ latitude: location.latitude, longitude: location.longitude });
   return (
     <View>
       <Text
@@ -73,6 +79,19 @@ const ResultsShowScreen = ({ navigation }) => {
           <Image style={styles.Image} source={{ uri: item }} />
         )}
       />
+
+      <MapView
+        style={styles.Map}
+        mapType="standard"
+        initialRegion={{
+          latitude: location.latitude,
+          longitude: location.longitude,
+          latitudeDelta: 0.001,
+          longitudeDelta: 0.001,
+        }}
+      >
+        <Polyline coordinates={point} />
+      </MapView>
     </View>
   );
 };
@@ -83,6 +102,12 @@ const styles = StyleSheet.create({
     height: 200,
     marginLeft: 10,
     alignSelf: "center",
+  },
+  Map: {
+    marginTop: 15,
+    width: 380,
+    height: 300,
+    marginLeft: 15,
   },
 });
 
